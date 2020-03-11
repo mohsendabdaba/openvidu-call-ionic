@@ -1,22 +1,53 @@
-<ion-content class="ion-padding" id="dashboard-content">
+<ion-header>
+    <ion-toolbar color="dark">
+        <ion-buttons [style.color]="'rgb(245, 129, 30)'" slot="start">
+            <ion-back-button (click)="comeBackToMenu"></ion-back-button>
+        </ion-buttons>
+        <ion-title [style.color]="'rgb(245, 129, 30)'"><strong>test</strong></ion-title>
+    </ion-toolbar>
+</ion-header>
 
-  <div id="card">
-      <img class="demo-logo" src="assets/images/openvidu_white_bg_transp.png" />
+<ion-content padding>
+    <form name="form" (ngSubmit)="f.form.valid && register(f)" #f="ngForm" novalidate>
+        <ion-list>
+            <ion-item>
+                <ion-input type="text" [(ngModel)]="model.WebSocketServer" #WebSocketServer="ngModel"
+                    name="WebSocketServer" placeholder="WebSocketServer*"></ion-input>
+            </ion-item>
+        </ion-list>
+        <ion-list>
+            <ion-item>
+                <ion-input type="text" [(ngModel)]="model.SipAdress" #SipAdress="ngModel" name="SipAdress"
+                    placeholder="SIP Adress *"></ion-input>
+            </ion-item>
+        </ion-list>
 
-    <div id="form">
-        <ion-item align="center">
-            <ion-label position="floating" color="light">Insert your session name</ion-label>
-            <ion-input [(ngModel)]="mySessionId" color="light" (keyup.enter)="join()"></ion-input>
-          </ion-item>
-          
-          <ion-button id="join-button" (click)="join()" expand="block" shape="round"
-            color="primary">
-            <ion-icon slot="start" name="videocam"></ion-icon>
-            Join
-          </ion-button>
 
-    </div>
-    
+        <ion-list>
+            <ion-item class="first">
+                <ion-input type="password" [(ngModel)]="model.password" #password="ngModel" name="password"
+                    placeholder="Mot de passe*"></ion-input>
+            </ion-item>
+        </ion-list>
 
-  </div>
+
+        <ion-button type="submit" expand="full" color="danger">Register</ion-button>
+    </form>
+    <br>
+    <br>
+    <audio id="remoteAudio"></audio>
+    <audio id="localAudio" muted="muted"></audio>
+    <ion-button type="button" id="endButton">End</ion-button>
+    <ion-button type="button" id="callButton">Call</ion-button>
+
+
+    <!-- <ion-input type="text" style="border :1px solid gray" [(ngModel)]="myInput"></ion-input> -->
+
+
+    <!-- <input id="state" type="text" style="border :1px solid gray" value="No"> -->
+    <ion-button color="success" id="registerButton" type="button" value="Register">start</ion-button>
 </ion-content>
+
+<!-- <script type="text/javascript" src="sip-0.5.0.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script type="text/javascript"> -->
